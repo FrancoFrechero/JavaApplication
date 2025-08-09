@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main>
+      <h1>Flask App Scaffold</h1>
+      <p id="status">Checking health…</p>
+    </main>
+    <script>
+      async function checkHealth() {
+        try {
+          const res = await fetch('/api/health');
+          const data = await res.json();
+          document.getElementById('status').textContent = `API status: ${data.status}`;
+        } catch (err) {
+          document.getElementById('status').textContent = 'API status: error';
+        }
+      }
+      checkHealth();
+    </script>
+  </body>
+</html>
